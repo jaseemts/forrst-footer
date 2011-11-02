@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Forrst Footer</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<style>
-		* { margin: 0; padding: 0;}
-		header, footer { padding: 20px; background: #000; color: #fff; width: 100%;}
-		.main-content {
-			height: 6000px; width: 100%;
-			padding: 20px;
-			color: #000;
-		}
-		footer { position: fixed; bottom: 0}
-	</style>
+  <meta charset="utf-8">
+  <title>Forrst Footer</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+    * { margin: 0; padding: 0;}
+    header, footer { padding: 20px; background: #000; color: #fff; width: 100%;}
+    .main-content {
+      height: 6000px; width: 100%;
+      padding: 20px;
+      color: #000;
+    }
+    footer { position: fixed; bottom: 0}
+  </style>
 </head>
 <body>
-	<header>
-		A glorious header goes here
-	</header>
-	<div class="main-content">
-		Some boring content ?
-	</div>
-	<footer>
-		Aha, here I am - your magic footer :)
-	</footer>
+  <header>
+    A glorious header goes here
+  </header>
+  <div class="main-content">
+    Some boring content ?
+  </div>
+  <footer>
+    Aha, here I am - your magic footer :)
+  </footer>
 </body>
 <script>
-	$(function(){
-		var windowHeight = $(window).height();
-		console.log(windowHeight);
-	
-		var documentHeight = $('body').height();
-		console.log(documentHeight);
-		
-		var footer = $('footer');
-		var footerHeight = footer.outerHeight() - 10;
-		
-		$('footer').css({
-			marginBottom: '-'+footerHeight+'px'
-		});
-		
-		var flag = 0;
-		$(window).scroll(function(){
-			var scrollTop = $(this).scrollTop();
-			// console.log(scrollTop, flag)
-			if( scrollTop > 100 ) {
-				console.log('there starts');
-				flag = 1;
-				$('footer').stop().animate({
-					marginBottom: 0
-				}, 200 )
-			}
-			if(scrollTop < 100 && flag==1) {
-				console.log('back again');
-				flag = 0;
-				$('footer').stop().animate({
-					marginBottom: '-'+footerHeight+'px'
-				}, 200 )
-			}
-		});
-	});
+$(function(){
+  
+  var footer = $('footer');
+  
+  // -10 to show topmost 10px part of footer initially
+  var footerHeight = footer.outerHeight() - 10;
+  
+  $('footer').css({
+    marginBottom: '-'+footerHeight+'px'
+  });
+  
+  var flag = 0;
+  $(window).scroll(function(){
+    var scrollTop = $(this).scrollTop();
+    
+    // if scrollTop value exceeds 100px
+    if( scrollTop > 100 ) {
+      flag = 1;
+      $('footer').stop().animate({
+        marginBottom: 0
+      }, 200 );
+    }
+    
+    // if scrollTop value becomes lower than 100px
+    if(scrollTop < 100 && flag==1) {
+      flag = 0;
+      $('footer').stop().animate({
+        marginBottom: '-'+footerHeight+'px'
+      }, 200 );
+    }
+    
+  });
+  
+});
 </script>
 </html>
